@@ -1,0 +1,1 @@
+export const baseUrl = 'https://car-rental-api.goit.global';

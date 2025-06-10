@@ -1,0 +1,31 @@
+.header {
+  background-color: var(--header-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 20px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 24px 60px;
+  }
+  .nav {
+    gap: 32px;
+  }
+}
+
+/* Styles for Desktop devices */
+@media screen and (min-width: 1440px) {
+  .header {
+    padding: 24px 120px;
+  }
+}

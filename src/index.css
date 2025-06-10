@@ -1,0 +1,136 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --font-family: 'Manrope', sans-serif;
+  --main-color-black: #101828;
+  --main-color-white: #ffffff;
+  --main-color-gray: #8d929a;
+  --main-color-gray-light: #dadde1;
+  --header-bg-color: #f2f4f7;
+  --button-color: #3470ff;
+  --button-hover-color: #0b44cd;
+  --input-color: #f7f7f7;
+  --transition: 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+  background-color: var(--main-color-white);
+  color: var(--main-color-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+}
+
+/* Buttons styles */
+
+.btn {
+  background-color: var(--button-color);
+  color: var(--main-color-white);
+  font-weight: 600;
+  border: none;
+  width: 276px;
+  padding: 12px 0px;
+  line-height: 1.25;
+  border-radius: 12px;
+  transition: background-color var(--transition);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover-color);
+}
+
+/* Navigation's styles */
+
+.navItem {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--main-color-black);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.active {
+  color: var(--button-hover-color);
+}
+
+/* Calendar Styles */
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker {
+  border: 1px solid var(--button-color) !important;
+}
+.react-datepicker__month-container {
+  width: 276px;
+}
+
+.react-datepicker__header {
+  background-color: var(--main-color-white) !important;
+  border-bottom: 1px solid var(--button-color) !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: var(--button-color) !important;
+}
+
+.react-datepicker__day-name {
+  color: var(--main-color-gray) !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: var(--button-color) !important;
+  color: var(--main-color-white) !important;
+  border-radius: 32px !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: var(--button-color) !important;
+  color: var(--main-color-white) !important;
+  border-radius: 32px !important;
+}
+
+.react-datepicker__day--outside-month {
+  color: var(--main-color-gray) !important;
+}

@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+ }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  margin: 0 auto;
+  width: 276px;
+  height: 268px;
+  border-radius: 19px;
+}
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+  .img {
+    margin: 0;
+    width: 640px;
+    height: 512px;
+  }
+}
+
+/* Styles for Desktop devices */
+@media screen and (min-width: 1440px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 72px;
+  }
+  .img {
+    margin: 0;
+  }
+}

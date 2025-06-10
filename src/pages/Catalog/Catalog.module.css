@@ -1,0 +1,32 @@
+.container {
+  padding-top: 24px;
+}
+
+.loadMore {
+  background-color: transparent;
+  color: var(--main-color-black);
+  font-weight: 600;
+  border: none;
+  width: 276px;
+  padding: 12px 0px;
+  line-height: 1.25;
+  border: 1px solid var(--button-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border var(--transition);
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.loadMore:hover,
+.loadMore:focus {
+  border: 1px solid var(--button-hover-color);
+}
+
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+}
+
+/* Styles for Desktop devices */
+@media screen and (min-width: 1440px) {
+}
