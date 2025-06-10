@@ -12,10 +12,10 @@ import { store } from './redux/store';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
-      <App />
+      <Provider store={store}>
+        <App />
         <Toaster />
-        </Provider>
+      </Provider>
     </BrowserRouter>
   </StrictMode>
 );

@@ -30,6 +30,7 @@ export const SelectStyles = {
     fontWeight: 500,
     padding: '12px 16px',
     cursor: 'pointer',
+    width: '100%',
   }),
   menu: base => ({
     ...base,
@@ -40,11 +41,16 @@ export const SelectStyles = {
   }),
   singleValue: base => ({
     ...base,
-    color: '#8D929A',
+    color: '#101828',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    minWidth: 0,
+    maxWidth: '100%',
   }),
   placeholder: base => ({
     ...base,
-    color: '#8D929A',
+    color: '#101828',
   }),
   indicatorSeparator: () => ({
     display: 'none',
@@ -55,3 +61,4 @@ export const SelectStyles = {
     padding: '0 8px',
   }),
 };
+

@@ -1,21 +1,12 @@
 import Select from 'react-select';
 import css from './SearchBar.module.css';
 import { Field, Form, Formik } from 'formik';
-import { SelectStyles } from '../../utils/SelectStyles';
-
-const options = [
-  { value: 'Aston Martin', label: 'Aston Martin' },
-  { value: 'Audi', label: 'Audi' },
-  { value: 'Bentley', label: 'Bentley' },
-];
-const prices = [
-  { value: '30', label: '30' },
-  { value: '40', label: '40' },
-  { value: '50', label: '50' },
-  { value: '60', label: '60' },
-  { value: '70', label: '70' },
-  { value: '80', label: '80' },
-];
+import { SelectStyles } from '@utils/SelectStyles';
+import { SingleValue } from '@utils/SelectSingleValue';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '@redux/filters/slice';
+import { brandsMapper } from '@utils/index';
+import { prices } from '../../constants/constants';
 
 const initialFormValues = {
   brands: '',
@@ -24,30 +15,90 @@ const initialFormValues = {
   mileageTo: '',
 };
 
-function SearchBar() {
+function SearchBar({ brands }) {
+  const dispatch = useDispatch();
+
+  const brandsOptions = brandsMapper(brands);
+
+  const handleSubmit = values => {
+    dispatch(
+      setFilters({
+        brand: values.brands?.value || null,
+        rentalPrice: values.prices?.value || null,
+        minMileage: values.mileageFrom || '',
+        maxMileage: values.mileageTo || '',
+      })
+    );
+  };
+
+  const handleReset = resetForm => {
+    dispatch(
+      setFilters({
+        brand: null,
+        rentalPrice: null,
+        minMileage: '',
+        maxMileage: '',
+      })
+    );
+    resetForm();
+  };
+
   return (
     <div className={css.container}>
       <Formik
         initialValues={initialFormValues}
-        // onSubmit={handleSubmit}
-
+        onSubmit={handleSubmit}
         enableReinitialize
       >
-        <Form className={css.form}>
-          <Select
-            options={options}
-            styles={SelectStyles}
-            placeholder="Choose a brand"
-          />
-          <Select
-            options={prices}
-            styles={SelectStyles}
-            placeholder="Choose a price"
-          />
-          <Field name="mileageFrom" placeholder="From" className={css.field} />
-          <Field name="mileageTo" placeholder="To" className={css.field} />
-          <button className="btn">Search</button>
-        </Form>
+        {({ setFieldValue, handleSubmit, resetForm }) => (
+          <Form className={css.form} onSubmit={handleSubmit}>
+            <div className={css.selectWrapper}>
+              <label className={css.label}>Car brand</label>
+              <Select
+                options={brandsOptions}
+                styles={SelectStyles}
+                placeholder="Choose a brand"
+                onChange={option => setFieldValue('brands', option)}
+              />
+            </div>
+            <div className={css.selectWrapper}>
+              <label className={css.label}>Price/ 1 hour</label>
+              <Select
+                options={prices}
+                styles={SelectStyles}
+                placeholder="Choose a price"
+                onChange={option => setFieldValue('prices', option)}
+                components={{ SingleValue }}
+                getOptionLabel={option => `${option.value}`}
+              />
+            </div>
+            <div>
+              <label className={css.label}>Сar mileage / km</label>
+              <div className={css.mileageWrapper}>
+                <Field
+                  name="mileageFrom"
+                  placeholder="From"
+                  className={css.field}
+                />
+                <Field
+                  name="mileageTo"
+                  placeholder="To"
+                  className={css.field}
+                />
+              </div>
+            </div>
+            <button className={css.btn} type="sumbit">
+              Search
+            </button>
+            <button
+              className={css.resetBtn}
+              type="button"
+              onClick={() => handleReset(resetForm)}
+            >
+              Reset filters
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

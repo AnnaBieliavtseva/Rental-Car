@@ -1,12 +1,81 @@
 .form {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   flex-direction: row;
   gap: 16px;
   margin-bottom: 56px;
 }
 
+.selectWrapper {
+  width: 196px;
+}
+
 .field {
   height: 44px;
+  width: 160px;
+  background-color: var(--input-color);
+  border: none;
+  padding: 12px 24px;
+  line-height: 1.25;
+  font-family: var(--font-family);
+  color: var(--main-color-black);
+}
+.field::placeholder {
+  color: var(--main-color-black);
+}
+
+.field:hover,
+.field:focus {
+  border: none;
+  outline: none;
+}
+
+.mileageWrapper {
+  display: flex;
+  border-radius: 12px;
+  border: 1px solid var(--main-color-gray-light);
+  overflow: hidden;
+}
+
+.mileageWrapper .field:first-child {
+  border-right: 1px solid var(--main-color-gray-light);
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--main-color-gray);
+}
+.btn {
+  background-color: var(--button-color);
+  color: var(--main-color-white);
+  font-weight: 600;
+  border: none;
+  width: 156px;
+  padding: 12px 0px;
+  line-height: 1.25;
+  border-radius: 12px;
+  transition: background-color var(--transition);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover-color);
+}
+
+.resetBtn {
+  composes: btn;
+  background-color: transparent;
+  color: var(--main-color-black);
+  border: 1px solid var(--button-color);
+  transition: border var(--transition);
+}
+
+.resetBtn:hover,
+.resetBtn:focus {
+  background-color: transparent;
+  border: 1px solid var(--button-hover-color);
 }
