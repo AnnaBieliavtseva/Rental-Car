@@ -2,7 +2,6 @@
   width: 276px;
   display: flex;
   flex-direction: column;
-  
 }
 
 .img {
@@ -45,3 +44,29 @@
   padding-right: 6px;
   border-right: 1px solid var(--main-color-gray);
 }
+
+.imgWrapper {
+  position: relative;
+}
+
+.favourite {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background-color: transparent;
+  
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--main-color-white);
+  fill: none
+}
+
+.iconFilled {
+  composes: icon;
+  stroke: transparent;
+}
+

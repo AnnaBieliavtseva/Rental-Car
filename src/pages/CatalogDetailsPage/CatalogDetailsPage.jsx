@@ -6,7 +6,7 @@ import { getCarById } from '@redux/vehicles/operations';
 import { selectCar, selectIsLoading } from '@redux/vehicles/selectors';
 import css from './CatalogDetailsPage.module.css';
 import Loader from '@components/Loader/Loader';
-import BookingForm from '../../components/BookingForm/BookingForm';
+import BookingForm from '@components/BookingForm/BookingForm';
 
 function CatalogDetailsPage() {
   const { id: carId } = useParams();

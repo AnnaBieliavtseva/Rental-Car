@@ -13,6 +13,8 @@ import { selectFilters } from '@redux/filters/selectors';
 import { resetCars } from '@redux/vehicles/slice';
 import { getBrands } from '@redux/brands/operations';
 import { selectBrands } from '@redux/brands/selectors';
+import Loader from '@components/Loader/Loader';
+import { selectIsLoading } from '@redux/vehicles/selectors';
 
 function Catalog() {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ function Catalog() {
   const totalPages = useSelector(selectTotalPages);
   const filters = useSelector(selectFilters);
   const brands = useSelector(selectBrands);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(resetCars());
@@ -33,15 +36,16 @@ function Catalog() {
     dispatch(getCars({ page: nextPage, filters }));
   };
 
+  if (isLoading || !cars) return <Loader />;
+
   return (
     <div className={css.container}>
       <SearchBar brands={brands} />
       <CatalogCardsList cars={cars} />
-      {currentPage < totalPages && (
+      {!isLoading && currentPage < totalPages && (
         <button className={css.loadMore} onClick={handleBtnClick}>
           Load More
         </button>
-        
       )}
     </div>
   );

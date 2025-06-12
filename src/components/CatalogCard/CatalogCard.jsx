@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import css from './CatalogCard.module.css';
-import { useSelector } from 'react-redux';
-import { selectIsLoading } from '../../redux/vehicles/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from '@redux/vehicles/selectors';
 import Loader from '../Loader/Loader';
-import { mileageFormatter } from '../../utils';
+import { mileageFormatter } from '@utils';
+import { toggleFavourite } from '@redux/favourites/slice';
+import { selectFavourites } from '@redux/favourites/selectors';
+
 
 function CatalogCard({
   id,
@@ -18,21 +21,40 @@ function CatalogCard({
   mileage,
 }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const city = address.split(',').splice(1, 1);
   const country = address.split(',').splice(2, 2);
-  const formattedMileage = mileageFormatter(mileage)
-   
+  const formattedMileage = mileageFormatter(mileage);
+  const favourites = useSelector(selectFavourites);
+  const isFavourite = favourites.includes(id);
 
   const handleBtnClick = id => {
     navigate(`/catalog/${id}`);
+  };
+
+  const handleFavouriteClick = () => {
+    dispatch(toggleFavourite(id));
   };
 
   if (isLoading) return <Loader />;
 
   return (
     <div className={css.container}>
-      <img src={img} alt={model} className={css.img} />
+      <div className={css.imgWrapper}>
+        <img src={img} alt={model} className={css.img} />
+        <button className={css.favourite} onClick={handleFavouriteClick}>
+          {isFavourite ? (
+            <svg className={css.icon}>
+              <use href="/sprite.svg#favourite" />
+            </svg>
+          ) : (
+            <svg className={css.iconFilled}>
+              <use href="/sprite.svg#favourite-filled" />
+            </svg>
+          )}
+        </button>
+      </div>
       <div className={css.cardContent}>
         <div className={css.modelWrapper}>
           <p>

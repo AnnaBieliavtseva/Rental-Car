@@ -6,7 +6,7 @@ import { SingleValue } from '@utils/SelectSingleValue';
 import { useDispatch } from 'react-redux';
 import { setFilters } from '@redux/filters/slice';
 import { brandsMapper } from '@utils/index';
-import { prices } from '../../constants/constants';
+import { prices } from '@constants/constants';
 
 const initialFormValues = {
   brands: '',

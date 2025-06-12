@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
-import css from './navigation.module.css';
-import Logo from '../../assets/Logo.svg';
+import css from './Navigation.module.css';
+import Logo from '@assets/Logo.svg';
 
 const navLinkCLass = ({ isActive }) => {
   return clsx('navItem', isActive && 'active');

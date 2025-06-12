@@ -1,4 +1,4 @@
-import { mileageFormatter } from '../../utils';
+import { mileageFormatter } from '@utils';
 import css from './CarDetails.module.css';
 
 function CarDetails({

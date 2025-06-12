@@ -1,6 +1,5 @@
 import { Field, Form, Formik } from 'formik';
 import css from './BookingForm.module.css';
-import DatePicker from 'react-datepicker';
 import Calendar from '../Calendar/Calendar';
 import toast from 'react-hot-toast';
 

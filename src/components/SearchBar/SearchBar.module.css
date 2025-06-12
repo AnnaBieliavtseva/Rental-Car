@@ -1,8 +1,8 @@
 .form {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   gap: 16px;
   margin-bottom: 56px;
 }
@@ -36,6 +36,7 @@
   border-radius: 12px;
   border: 1px solid var(--main-color-gray-light);
   overflow: hidden;
+  max-width: 276px;
 }
 
 .mileageWrapper .field:first-child {
@@ -78,4 +79,20 @@
 .resetBtn:focus {
   background-color: transparent;
   border: 1px solid var(--button-hover-color);
+}
+
+/* Styles for Tablet devices */
+@media screen and (min-width: 768px) {
+
+}
+
+/* Styles for Desktop devices */
+@media screen and (min-width: 1440px) {
+  .form {
+    flex-direction: row;
+    align-items: end;
+  }
+  .mileageWrapper {
+    max-width: 320px;
+  }
 }
