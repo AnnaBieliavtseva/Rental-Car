@@ -1,7 +1,7 @@
-🚗 RentalCar Frontend
+🚗 RentalCar Frontend:
 A responsive frontend web application for RentalCar, a car rental service. The app allows users to browse available vehicles, filter by various criteria, add favorites, and submit rental requests through a dedicated form.
 
-🔍 Overview
+🔍 Overview:
 This project is built with React and powered by a ready-to-use backend API for managing rental listings. It includes a homepage, a catalog of cars with filters and pagination, and a detailed car page with a booking form.
 
 📚 API Docs: https://car-rental-api.goit.global/api-docs/
@@ -24,6 +24,7 @@ This project is built with React and powered by a ready-to-use backend API for m
 Clone the repo:
 
 git clone https://github.com/AnnaBieliavtseva/Rental-Car.git
+
 cd Rental-Car
 
 Install dependencies:
@@ -40,11 +41,11 @@ npm run build
 
 🔗 Routes
 
-/ — Home
+- / — Home
 
-/catalog — Vehicle Catalog
+- /catalog — Vehicle Catalog
 
-/catalog/:id — Single Car Page
+- /catalog/:id — Single Car Page
 
 👤 Author
 

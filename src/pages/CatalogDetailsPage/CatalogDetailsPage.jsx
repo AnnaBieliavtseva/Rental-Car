@@ -7,20 +7,20 @@ import { selectCar, selectIsLoading } from '@redux/vehicles/selectors';
 import css from './CatalogDetailsPage.module.css';
 import Loader from '@components/Loader/Loader';
 import BookingForm from '@components/BookingForm/BookingForm';
+import { resetCar } from '@redux/vehicles/slice';
 
 function CatalogDetailsPage() {
   const { id: carId } = useParams();
   const isLoading = useSelector(selectIsLoading);
-
+  const car = useSelector(selectCar);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(resetCar());
     if (carId) {
       dispatch(getCarById(carId));
     }
   }, [dispatch, carId]);
-
-  const car = useSelector(selectCar);
 
   if (isLoading || !car) return <Loader />;
   return (

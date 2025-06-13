@@ -4,7 +4,7 @@ import css from './NotFoundPage.module.css'
 function NotFoundPage() {
   return (
     <div className={css.container}>
-      <p>404</p>
+      <p className={css.accentText}>404</p>
       <h1>Page not found</h1>
       <p>Sorry, we couldn’t find the page you’re looking for.</p>
       <div>

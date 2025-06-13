@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  border: 1px solid #081222;
+  border: 1px solid var(--main-color-black);
   border-radius: 12px;
   padding: 12px 20px;
   width: 100%;

@@ -31,6 +31,9 @@ const vehiclesSlice = createSlice({
       state.totalPages = 0;
       state.totalCars = 0;
     },
+    resetCar: state => {
+      state.currentCar = null;
+    },
   },
   extraReducers: builder => {
     builder
@@ -56,4 +59,4 @@ const vehiclesSlice = createSlice({
 });
 
 export const vehiclesReducer = vehiclesSlice.reducer;
-export const {resetCars} = vehiclesSlice.actions
+export const {resetCars, resetCar} = vehiclesSlice.actions

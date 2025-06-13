@@ -22,6 +22,10 @@
   margin-bottom: 24px;
 }
 
+.fieldWrapper {
+  width: 100%;
+}
+
 .field {
   height: 48px;
   width: 100%;
@@ -30,16 +34,27 @@
   font-family: var(--font-family);
   font-weight: 500;
   background-color: var(--input-color);
-  color: var(--main-color-gray);
+  color: var(--main-color-black);
   padding: 12px 20px;
   outline: none;
   font-size: 16px;
+}
+
+.field::placeholder{
+  color: var(--main-color-gray);
 }
 
 .fieldTextArea {
   composes: field;
   resize: none;
   height: 88px;
+}
+
+.error {
+  margin-left: 8px;
+  color: red;
+  font-size: 12px;
+  margin: 0;
 }
 
 /* Styles for Tablet devices */

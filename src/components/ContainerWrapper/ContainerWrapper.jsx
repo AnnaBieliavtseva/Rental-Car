@@ -1,4 +1,3 @@
-// src/components/ContainerWrapper.jsx
 import css from './ContainerWrapper.module.css';
 
 function ContainerWrapper({ children }) {

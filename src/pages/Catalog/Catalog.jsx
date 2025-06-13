@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCars } from '@redux/vehicles/operations';
 import {
@@ -24,6 +24,11 @@ function Catalog() {
   const filters = useSelector(selectFilters);
   const brands = useSelector(selectBrands);
   const isLoading = useSelector(selectIsLoading);
+  const bottomRef = useRef(null);
+  const isFirstPage = currentPage === 1 && cars.length === 0;
+  
+
+
 
   useEffect(() => {
     dispatch(resetCars());
@@ -33,18 +38,27 @@ function Catalog() {
 
   const handleBtnClick = () => {
     const nextPage = Number(currentPage || 1) + 1;
-    dispatch(getCars({ page: nextPage, filters }));
+    dispatch(getCars({ page: nextPage, filters })).then(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    });
   };
 
-  if (isLoading || !cars) return <Loader />;
+  if (isFirstPage || !cars) return <Loader />;
 
   return (
     <div className={css.container}>
       <SearchBar brands={brands} />
-      <CatalogCardsList cars={cars} />
-      {!isLoading && currentPage < totalPages && (
+      {cars.length ? (
+        <CatalogCardsList cars={cars} />
+      ) : (
+        <p className={css.textError}>
+          There are no matches for your filters. Please try again
+        </p>
+      )}
+      <div ref={bottomRef} />
+      {cars.length && currentPage < totalPages && (
         <button className={css.loadMore} onClick={handleBtnClick}>
-          Load More
+          {isLoading ? 'Loading...' : 'Load More'}
         </button>
       )}
     </div>

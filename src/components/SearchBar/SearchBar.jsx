@@ -1,24 +1,30 @@
 import Select from 'react-select';
 import css from './SearchBar.module.css';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { SelectStyles } from '@utils/SelectStyles';
 import { SingleValue } from '@utils/SelectSingleValue';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilters } from '@redux/filters/slice';
 import { brandsMapper } from '@utils/index';
 import { prices } from '@constants/constants';
-
-const initialFormValues = {
-  brands: '',
-  prices: '',
-  mileageFrom: '',
-  mileageTo: '',
-};
+import { selectFilters } from '@redux/filters/selectors';
+import { mileageInputFormatter } from '../../utils';
 
 function SearchBar({ brands }) {
   const dispatch = useDispatch();
-
   const brandsOptions = brandsMapper(brands);
+  const filters = useSelector(selectFilters);
+
+  const initialFormValues = {
+    brands: filters.brand
+      ? brandsOptions.find(option => option.value === filters.brand)
+      : null,
+    prices: filters.rentalPrice
+      ? prices.find(option => option.value === filters.rentalPrice)
+      : null,
+    mileageFrom: filters.minMileage || '',
+    mileageTo: filters.maxMileage || '',
+  };
 
   const handleSubmit = values => {
     dispatch(
@@ -50,7 +56,7 @@ function SearchBar({ brands }) {
         onSubmit={handleSubmit}
         enableReinitialize
       >
-        {({ setFieldValue, handleSubmit, resetForm }) => (
+        {({ setFieldValue, handleSubmit, resetForm, values }) => (
           <Form className={css.form} onSubmit={handleSubmit}>
             <div className={css.selectWrapper}>
               <label className={css.label}>Car brand</label>
@@ -58,6 +64,7 @@ function SearchBar({ brands }) {
                 options={brandsOptions}
                 styles={SelectStyles}
                 placeholder="Choose a brand"
+                value={values.brands}
                 onChange={option => setFieldValue('brands', option)}
               />
             </div>
@@ -67,6 +74,7 @@ function SearchBar({ brands }) {
                 options={prices}
                 styles={SelectStyles}
                 placeholder="Choose a price"
+                value={values.prices}
                 onChange={option => setFieldValue('prices', option)}
                 components={{ SingleValue }}
                 getOptionLabel={option => `${option.value}`}
@@ -75,15 +83,33 @@ function SearchBar({ brands }) {
             <div>
               <label className={css.label}>Сar mileage / km</label>
               <div className={css.mileageWrapper}>
-                <Field
+                <input
                   name="mileageFrom"
                   placeholder="From"
                   className={css.field}
+                  value={
+                    values.mileageFrom
+                      ? `From ${mileageInputFormatter(values.mileageFrom)}`
+                      : ''
+                  }
+                  onChange={e => {
+                    const input = e.target.value.replace(/[^\d]/g, '');
+                    setFieldValue('mileageFrom', input);
+                  }}
                 />
-                <Field
+                <input
                   name="mileageTo"
                   placeholder="To"
                   className={css.field}
+                  value={
+                    values.mileageTo
+                      ? `To ${mileageInputFormatter(values.mileageTo)}`
+                      : ''
+                  }
+                  onChange={e => {
+                    const input = e.target.value.replace(/[^\d]/g, '');
+                    setFieldValue('mileageTo', input);
+                  }}
                 />
               </div>
             </div>

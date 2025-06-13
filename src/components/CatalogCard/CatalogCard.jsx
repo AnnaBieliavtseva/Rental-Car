@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './CatalogCard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from '@redux/vehicles/selectors';
-import Loader from '../Loader/Loader';
 import { mileageFormatter } from '@utils';
 import { toggleFavourite } from '@redux/favourites/slice';
 import { selectFavourites } from '@redux/favourites/selectors';
@@ -22,7 +20,6 @@ function CatalogCard({
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
   const city = address.split(',').splice(1, 1);
   const country = address.split(',').splice(2, 2);
   const formattedMileage = mileageFormatter(mileage);
@@ -37,7 +34,7 @@ function CatalogCard({
     dispatch(toggleFavourite(id));
   };
 
-  if (isLoading) return <Loader />;
+
 
   return (
     <div className={css.container}>
@@ -57,11 +54,11 @@ function CatalogCard({
       </div>
       <div className={css.cardContent}>
         <div className={css.modelWrapper}>
-          <p>
+          <p className={css.modelName}>
             {brand}
             <span className={css.accent}> {model}</span>, {year}
           </p>
-          <p>${rentalPrice}</p>
+          <p className={css.price}>${rentalPrice}</p>
         </div>
         <div className={css.infoList}>
           <ul className={css.infoWrapper}>

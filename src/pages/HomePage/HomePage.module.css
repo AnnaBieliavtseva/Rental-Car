@@ -22,7 +22,7 @@
   transform: translateX(-50%);
   width: 100%;
   text-align: center;
-  color: white;
+  color: var(--main-color-white);
   padding: 0 8px;
 }
 
